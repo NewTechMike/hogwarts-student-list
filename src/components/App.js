@@ -8,14 +8,14 @@ import Home from './Home';
 
 function App() {
 
-  const [students, setStudents] = useState(' ');
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/students")
-    .then((r) => r.json)
+    .then((r) => r.json())
     .then((student) => setStudents(student))
   }, []);
-
+  
   const student_id = students.map((student) => {
     return student.id
   })
@@ -23,6 +23,8 @@ function App() {
   const student_name = students.map((student) => {
     return student.name
   })
+  console.log("(A)Student names: ", student_name)
+  console.log(students)
 
   return (
     <div className="App">

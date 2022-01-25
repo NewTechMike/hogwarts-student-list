@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 function ListItem({s_name}){
   return(

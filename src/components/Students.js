@@ -1,14 +1,17 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Students({student_id, student_name}){
+function Students({id, name}){
   
-  const displayStudents = student_name.map((names, id) => {
+  console.log("(S)Student names: ", name)
+
+  const displayStudents = name.map((names, id) => {
     return <ListItem 
-      s_id={id}
+      key={id}
       s_name={names}
     />
-  })
+    }
+  )
 
   return(
     <div>
