@@ -10,6 +10,7 @@ import Ravenclaw from './Ravenclaw';
 import Hufflepuff from './Hufflepuff';
 import Slytherin from './Slytherin';
 
+
 function App() {
 
   const [students, setStudents] = useState([]);
@@ -31,6 +32,10 @@ function App() {
   const student_name = students.map((student) => {
     return student.name
   })
+  const student_year = students.map((student) => {
+    return student.year_at_school
+  })
+  //console.log("(A)StudentData: ", students[2].year_at_school)
  /******** */
   
   
@@ -97,10 +102,7 @@ function App() {
   })
   /******** */
 
-
-
   console.log("(A)Student names: ", student_name)
-  //console.log(students)
 
   return (
     <div className="App">
@@ -110,7 +112,7 @@ function App() {
             <Home/>
           </Route>
           <Route path='/students'>
-            <Students id={student_id} name={student_name} />
+            <Students id={student_id} name={student_name} year={student_year} />
           </Route>
           <Route path='/gryffindor'>
             <Gryffindor id={gryff_student_id} name={gryff_student_name} />

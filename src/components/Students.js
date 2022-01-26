@@ -1,8 +1,11 @@
 import React from "react";
 import ListItem from "./ListItem";
+import NewStudent from './NewStudent';
 
-function Students({id, name}){
-  
+function Students({id, name, year}){
+  //Question:
+  //How do I pass "year" into ListItem to display
+  // the year at school for each student
   console.log("(S)Student names: ", name)
   //console.log("(S)Student id: ", id)
 
@@ -20,7 +23,9 @@ function Students({id, name}){
       <header>
         Currently Enrolled Students
       </header>
+      <NewStudent />
       {displayStudents}
+      
     </div>
   )
 }

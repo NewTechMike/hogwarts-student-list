@@ -7,6 +7,7 @@ function Gryffindor({id, name}){
   const displayStudents = name.map((names, id) => {
     return <ListItem 
       key={id}
+      id={id+1}
       s_name={names}
     />
     }
