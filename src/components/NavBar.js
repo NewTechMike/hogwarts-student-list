@@ -18,7 +18,7 @@ function NavBar(){
       to="/"
       exact
       style={linkStyles}
-      activeStyle={{background: "light brown"}}
+      activeStyle={{background: "brown"}}
       >
         Home
       </NavLink>
@@ -26,9 +26,41 @@ function NavBar(){
       to="/students"
       exact
       style={linkStyles}
-      activeStyle={{background: "silver"}}
+      activeStyle={{background: "grey"}}
       >
         Students
+      </NavLink>
+      <NavLink 
+      to="/gryffindor"
+      exact
+      style={linkStyles}
+      activeStyle={{background: "grey"}}
+      >
+        Gryffindor
+      </NavLink>
+      <NavLink 
+      to="/ravenclaw"
+      exact
+      style={linkStyles}
+      activeStyle={{background: "grey"}}
+      >
+        Ravenclaw
+      </NavLink>
+      <NavLink 
+      to="/hufflepuff"
+      exact
+      style={linkStyles}
+      activeStyle={{background: "grey"}}
+      >
+        Hufflepuff
+      </NavLink>
+      <NavLink 
+      to="/slytherin"
+      exact
+      style={linkStyles}
+      activeStyle={{background: "grey"}}
+      >
+        Slytherin
       </NavLink>
     </div>
   )
