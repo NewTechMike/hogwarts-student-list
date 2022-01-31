@@ -15,7 +15,7 @@ function ListItem({student_name, id, onRemove}){
   return(
     <div className = "listitem">  
       <h2> 
-        <li style={{"font-size": 25}}>
+        <li style={{"fontSize": 25}}>
           {student_name} 
           <button 
             className="remove"
