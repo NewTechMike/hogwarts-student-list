@@ -6,7 +6,7 @@ const linkStyles = {
   width: "75px",
   padding: "12px",
   margin: "0 6px 6px",
-  background: "lavender",
+  background: "grey",
   textDecoration: "none",
   color: "gold"
 };
@@ -18,7 +18,7 @@ function NavBar(){
       to="/"
       exact
       style={linkStyles}
-      activeStyle={{background: "brown"}}
+      activeStyle={{background: "#a9a9a9"}}
       >
         Home
       </NavLink>
@@ -26,39 +26,47 @@ function NavBar(){
       to="/students"
       exact
       style={linkStyles}
-      activeStyle={{background: "grey"}}
+      activeStyle={{background: "#a9a9a9"}}
       >
         Students
       </NavLink>
       <NavLink 
-      to="/gryffindor"
+      to="/houses"
       exact
       style={linkStyles}
-      activeStyle={{background: "grey"}}
+      activeStyle={{background: "#a9a9a9"}}
+      >
+        Houses
+      </NavLink>
+      <NavLink 
+      to="/houses/gryffindor"
+      exact
+      style={linkStyles}
+      activeStyle={{background: "maroon"}}
       >
         Gryffindor
       </NavLink>
       <NavLink 
-      to="/ravenclaw"
+      to="/houses/ravenclaw"
       exact
       style={linkStyles}
-      activeStyle={{background: "grey"}}
+      activeStyle={{background: "navy"}}
       >
         Ravenclaw
       </NavLink>
       <NavLink 
-      to="/hufflepuff"
+      to="/houses/hufflepuff"
       exact
       style={linkStyles}
-      activeStyle={{background: "grey"}}
+      activeStyle={{background: "black"}}
       >
         Hufflepuff
       </NavLink>
       <NavLink 
-      to="/slytherin"
+      to="/houses/slytherin"
       exact
       style={linkStyles}
-      activeStyle={{background: "grey"}}
+      activeStyle={{background: "green"}}
       >
         Slytherin
       </NavLink>

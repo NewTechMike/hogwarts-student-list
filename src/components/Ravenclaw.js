@@ -1,23 +1,25 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Ravenclaw({id, name}){
-
-  console.log("(R) Students: ", name)
-  const displayStudents = name.map((names, id) => {
-    return <ListItem 
-      key={id}
-      s_name={names}
-    />
-    }
-  )
+function Ravenclaw({id, names, handleRemove}){
+  const displayNames = names.filter((name)=>{
+    return name.name
+  })
+  console.log("(R) Students: ", names)
 
   return(
     <div>
       <header>
       Ravenclaw Students
       </header>
-      {displayStudents}
+      {displayNames.map((names) =>{
+        return <ListItem 
+          key={names.id}
+          id={names.id}
+          student_name={names.name}
+          onRemove={handleRemove}
+      /> 
+    })}
     </div>
   )
 }

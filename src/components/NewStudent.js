@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-function NewStudent(){
+function NewStudent({onAddNewStudent}){
   const [name, setName] = useState(" ");
-
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -23,16 +22,17 @@ function NewStudent(){
       body: JSON.stringify(nameData),
     })
     .then((r)=>r.json())
-    .then((newStudent)=>console.log(newStudent))
+    .then((newStudent)=>onAddNewStudent(newStudent))
   }
 
   return(
     <form className="NewStudent" onSubmit={handleAddNew}>
-      <label>
+      <label style={{color: "gold"}}>
         Name:
         <input 
           type="text"
           name="name"
+          placeholder="Student name"
           value={name}
           onChange = {(e) => setName(e.target.value)}
           />

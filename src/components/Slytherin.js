@@ -1,23 +1,26 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Slytherin({id, name}){
-
-  console.log("(S) Students: ", name)
-  const displayStudents = name.map((names, id) => {
-    return <ListItem 
-      key={id}
-      s_name={names}
-    />
-    }
-  )
+function Slytherin({id, names, handleRemove}){
+  const displayNames = names.filter((name)=>{
+    return name.name
+  })
+  console.log("(Sly) Students: ", names)
+  console.log("(Sly)Display Students: ", displayNames)
 
   return(
     <div>
       <header>
         Slytherin Students
       </header>
-      {displayStudents}
+      {displayNames.map((names) =>{
+        return <ListItem 
+          key={names.id}
+          id={names.id}
+          student_name={names.name}
+          onRemove={handleRemove}
+      /> 
+    })}
     </div>
   )
 }

@@ -1,24 +1,26 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Gryffindor({id, name}){
+function Gryffindor({id, names, handleRemove}){
 
-  console.log("(G) Students: ", name)
-  const displayStudents = name.map((names, id) => {
-    return <ListItem 
-      key={id}
-      id={id+1}
-      s_name={names}
-    />
-    }
-  )
+  const displayNames = names.filter((name)=>{
+    return name.name
+  })
+  console.log("(G) Students id: ", names.id)
 
   return(
     <div>
       <header>
         Gryffindor Students
       </header>
-      {displayStudents}
+      {displayNames.map((names) =>{
+        return <ListItem 
+          key={names.id}
+          id={names.id}
+          student_name={names.name}
+          onRemove={handleRemove}
+      /> 
+    })}
     </div>
   )
 }

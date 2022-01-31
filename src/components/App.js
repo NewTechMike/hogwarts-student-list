@@ -5,6 +5,8 @@ import NavBar from "./NavBar";
 import '../App.css';
 import Students from './Students';
 import Home from './Home';
+import Houses from './Houses';
+
 import Gryffindor from './Gryffindor';
 import Ravenclaw from './Ravenclaw';
 import Hufflepuff from './Hufflepuff';
@@ -13,96 +15,104 @@ import Slytherin from './Slytherin';
 
 function App() {
 
+  const [houses, setHouses] = useState([]);
   const [students, setStudents] = useState([]);
-  const [gryffStudents, setGryffStudents] = useState ([]);
-  const [ravenStudents, setRavenStudents] = useState ([]);
-  const [huffStudents, setHuffStudents] = useState ([]);
-  const [slyStudents, setSlyStudents] = useState ([]);
   
-  
-  /**** All Students */
+  const [gryffStudents, setGryffStudents] = useState([]);
+  const [ravenStudents, setRavenStudents] = useState([]);
+  const [huffStudents, setHuffStudents] = useState([]);
+  const [slyStudents, setSlyStudents] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:9292/students")
     .then((r) => r.json())
     .then((student) => setStudents(student))
   }, []);
+  const displayStudents = students.filter((student) => {
+    return student.name
+  })
   const student_id = students.map((student) => {
     return student.id
   })
+  /*
   const student_name = students.map((student) => {
     return student.name
   })
-  const student_year = students.map((student) => {
-    return student.year_at_school
-  })
-  //console.log("(A)StudentData: ", students[2].year_at_school)
- /******** */
-  
-  
-  /**** Gryffindor Students */
+*/
+ useEffect(()=>{
+    fetch("http://localhost:9292/houses")
+    .then((r)=>r.json())
+    .then((house)=>setHouses(house))
+ },[]);
+ const house_name = houses.map((house) =>{
+   return house.name
+ })
+ /*
+ const house_id = houses.map((house)=> {
+   return house.id
+ })
+*/
   useEffect(() => {
-    fetch("http://localhost:9292/gryffindor")
-    .then((r) => r.json())
-    .then((student) => setGryffStudents(student))
-  }, []);
-  //console.log("(A)Gryff Students: ", gryffStudents)
+      fetch("http://localhost:9292/houses/1")
+      .then((r)=> r.json())
+      .then((gryff)=>setGryffStudents(gryff))
+  },[]);
   const gryff_student_id = gryffStudents.map((student) => {
     return student.id
   })
-  const gryff_student_name = gryffStudents.map((student) => {
-    return student.name
+  const displayGryffStudents = gryffStudents.filter((student) => {
+    return student
   })
-  /******** */
+  
 
-
-  /**** Ravenclaw Students */
   useEffect(() => {
-    fetch("http://localhost:9292/ravenclaw")
-    .then((r) => r.json())
-    .then((student) => setRavenStudents(student))
-  }, []);
-  //console.log("(A)Raven Students: ", ravenStudents)
+      fetch("http://localhost:9292/houses/2")
+      .then((r)=> r.json())
+      .then((raven)=>setRavenStudents(raven))
+  },[]);
   const raven_student_id = ravenStudents.map((student) => {
     return student.id
   })
-  const raven_student_name = ravenStudents.map((student) => {
-    return student.name
+  const displayRavenStudents = ravenStudents.filter((student) => {
+    return student
   })
-  /******** */
-  
-  
-  /**** Hufflepuff Students */
+
   useEffect(() => {
-    fetch("http://localhost:9292/hufflepuff")
-    .then((r) => r.json())
-    .then((student) => setHuffStudents(student))
-  }, []);
-  //console.log("(A)Huff Students: ", huffStudents)
+      fetch("http://localhost:9292/houses/3")
+      .then((r)=> r.json())
+      .then((huff)=>setHuffStudents(huff))
+  },[]);
   const huff_student_id = huffStudents.map((student) => {
     return student.id
   })
-  const huff_student_name = huffStudents.map((student) => {
-    return student.name
+  const displayHuffStudents = huffStudents.filter((student) => {
+    return student
   })
-  /******** */
-  
-  
-  /**** Slytherin Students */
-  useEffect(() => {
-    fetch("http://localhost:9292/slytherin")
-    .then((r) => r.json())
-    .then((student) => setSlyStudents(student))
-  }, []);
-  //console.log("(A)Sly Students: ", slyStudents)
-  const sly_student_id = slyStudents.map((student) => {
-    return student.id
-  })
-  const sly_student_name = slyStudents.map((student) => {
-    return student.name
-  })
-  /******** */
 
-  console.log("(A)Student names: ", student_name)
+  useEffect(() => {
+      fetch("http://localhost:9292/houses/4")
+      .then((r)=> r.json())
+      .then((sly)=>setSlyStudents(sly))
+  },[]);
+  const sly_student_id = slyStudents.map((student) => {
+    return student
+  })
+  console.log("(A)Sly Id: ", sly_student_id)
+  console.log("(A)display:  ", displayStudents)
+  const displaySlyStudents= slyStudents.filter((student) => {
+    return student
+  })
+
+  function handleRemoveStudent(removedStudent){
+    const updatedStudents = students.filter((student) =>
+      student.id !== removedStudent
+    )
+    setStudents(updatedStudents)
+  }
+
+  function handleAddNewStudent(newStudent){
+    setStudents([...students, newStudent])
+  }
 
   return (
     <div className="App">
@@ -112,19 +122,38 @@ function App() {
             <Home/>
           </Route>
           <Route path='/students'>
-            <Students id={student_id} name={student_name} year={student_year} />
+            <Students 
+              id={student_id}
+              names={displayStudents} 
+              handleRemove={handleRemoveStudent}
+              handleAddNew={handleAddNewStudent}/>
           </Route>
-          <Route path='/gryffindor'>
-            <Gryffindor id={gryff_student_id} name={gryff_student_name} />
+          <Route exact path='/houses'>
+            <Houses name={house_name} />
           </Route>
-          <Route path='/ravenclaw'>
-            <Ravenclaw id={raven_student_id} name={raven_student_name} />
+          <Route path='/houses/gryffindor'>
+            <Gryffindor 
+              id={gryff_student_id} 
+              names={displayGryffStudents}
+              handleRemove={handleRemoveStudent} />
           </Route>
-          <Route path='/hufflepuff'>
-            <Hufflepuff id={huff_student_id} name={huff_student_name} />
+          <Route path='/houses/ravenclaw'>
+            <Ravenclaw 
+              id={raven_student_id} 
+              names={displayRavenStudents} 
+              handleRemove={handleRemoveStudent} />
           </Route>
-          <Route path='/slytherin'>
-            <Slytherin id={sly_student_id} name={sly_student_name} />
+          <Route path='/houses/hufflepuff'>
+            <Hufflepuff 
+              id={huff_student_id} 
+              names={displayHuffStudents} 
+              handleRemove={handleRemoveStudent} />
+          </Route>
+          <Route path='/houses/slytherin'>
+            <Slytherin 
+              id={sly_student_id} 
+              names={displaySlyStudents}
+              handleRemove={handleRemoveStudent} />
           </Route>
         </Switch>
     </div>

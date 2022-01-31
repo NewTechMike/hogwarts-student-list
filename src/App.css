@@ -8,6 +8,26 @@
   height: 40vmin;
   pointer-events: none;
 }
+body {
+  background-image: url("./images/hogwarts.jpg");
+  background-color: #cccccc;
+  background-size: cover;
+ }
+
+ p, h1, li, header {
+  font-family: 'Harry Potter Regular';
+  src: local('Harry Potter Regular'), url('HARRP___.woff') format('woff');
+  color: gold;
+  font-size: 30px;
+  text-shadow: 2px 2px black;
+  }
+
+ @font-face {
+  font-family: 'Harry Potter Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Harry Potter Regular'), url('HARRP___.woff') format('woff');
+  }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

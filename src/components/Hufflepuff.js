@@ -1,23 +1,25 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Hufflepuff({id, name}){
-
-  console.log("(H) Students: ", name)
-  const displayStudents = name.map((names, id) => {
-    return <ListItem 
-      key={id}
-      s_name={names}
-    />
-    }
-  )
+function Hufflepuff({id, names, handleRemove}){
+  const displayNames = names.filter((name)=>{
+    return name.name
+  })
+  console.log("(H) Students: ", names)
 
   return(
     <div>
       <header>
         Hufflepuff Students
       </header>
-      {displayStudents}
+      {displayNames.map((names) =>{
+        return <ListItem 
+          key={names.id}
+          id={names.id}
+          student_name={names.name}
+          onRemove={handleRemove}
+      /> 
+    })}
     </div>
   )
 }

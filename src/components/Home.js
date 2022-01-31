@@ -2,8 +2,9 @@ import React from "react";
 
 function Home(){
   return (
-    <div>
-      <p> Welcome to the home page</p>
+    <div >
+      <h1 style={{color: "gold"}}>Hello, Professor!</h1>
+      <p> Welcome to the Hogwarts student registry</p>
     </div>
   )
 }
