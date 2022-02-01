@@ -16,6 +16,12 @@
     .then((updatedStudent)=>console.log(updatedStudent))
   }
   */
+/*
+  house === 1 ? setGryffStudents(newStudent) :
+    house === 2 ? setRavenStudents(newStudent) :
+    house === 3 ? setHuffStudents(newStudent) :
+    house === 4 ? setSlyStudents(newStudent) : "null"
+    */
 
 
   

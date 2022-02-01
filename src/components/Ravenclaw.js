@@ -1,5 +1,6 @@
 import React from "react";
 import ListItem from "./ListItem";
+import ListHouse from "./ListHouse";
 
 function Ravenclaw({id, names, handleRemove}){
   const displayNames = names.filter((name)=>{
@@ -13,12 +14,11 @@ function Ravenclaw({id, names, handleRemove}){
       Ravenclaw Students
       </header>
       {displayNames.map((names) =>{
-        return <ListItem 
-          key={names.id}
-          id={names.id}
-          student_name={names.name}
-          onRemove={handleRemove}
-      /> 
+        return <ListHouse
+        key={names.id}
+        id={names.id}
+        house={names.name}
+    /> 
     })}
     </div>
   )

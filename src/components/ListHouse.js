@@ -1,13 +1,13 @@
 import React from "react";
 
-function ListHouse({house_name}){
+function ListHouse({house}){
 
 
   return(
     <div className = "listhouse">
       <h2>
         <li>
-          {house_name}
+          {house}
         </li>
       </h2>
     </div>

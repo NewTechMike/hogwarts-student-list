@@ -22,6 +22,8 @@ function App() {
   const [ravenStudents, setRavenStudents] = useState([]);
   const [huffStudents, setHuffStudents] = useState([]);
   const [slyStudents, setSlyStudents] = useState([]);
+  
+  const [state, setState] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/students")
@@ -100,10 +102,26 @@ function App() {
       student.id !== removedStudent
     )
     setStudents(updatedStudents)
+    setSlyStudents([...slyStudents])
   }
 
   function handleAddNewStudent(newStudent){
+    const house = newStudent.house_id
     setStudents([...students, newStudent])
+      console.log("(A)NewSthouse: ", house)
+    if(house === 1){
+      alert("Gryffindor!")
+      setGryffStudents([...gryffStudents, newStudent])
+    } else if(house === 2){   
+      alert("Ravenclaw!") 
+      setRavenStudents([...ravenStudents, newStudent])
+    } else if(house === 3){
+      alert("Hufflepuff!")
+      setHuffStudents([...huffStudents, newStudent])
+    } else if (house === 4){
+      alert("Slytherin!")
+      setSlyStudents([...slyStudents, newStudent])
+    } 
   }
 
   return (
@@ -127,25 +145,29 @@ function App() {
             <Gryffindor 
               id={gryff_student_id} 
               names={displayGryffStudents}
-              handleRemove={handleRemoveStudent} />
+              handleRemove={handleRemoveStudent} 
+            />
           </Route>
           <Route path='/houses/ravenclaw'>
             <Ravenclaw 
               id={raven_student_id} 
               names={displayRavenStudents} 
-              handleRemove={handleRemoveStudent} />
+              handleRemove={handleRemoveStudent} 
+            />
           </Route>
           <Route path='/houses/hufflepuff'>
             <Hufflepuff 
               id={huff_student_id} 
               names={displayHuffStudents} 
-              handleRemove={handleRemoveStudent} />
+              handleRemove={handleRemoveStudent} 
+            />
           </Route>
           <Route path='/houses/slytherin'>
             <Slytherin 
               id={sly_student_id} 
               names={displaySlyStudents}
-              handleRemove={handleRemoveStudent} />
+              handleRemove={handleRemoveStudent} 
+            />
           </Route>
         </Switch>
     </div>

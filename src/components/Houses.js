@@ -6,7 +6,7 @@ function Houses({name}){
   const displayHouses = name.map((names, id) => {
     return <ListHouse 
       key={id}
-      house_name={names}
+      house={names}
     />
     }
   )

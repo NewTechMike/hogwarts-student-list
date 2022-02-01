@@ -20,8 +20,8 @@ function Students({names, id, handleRemove, handleAddNew}){
           id={names.id}
           student_name={names.name}
           onRemove={handleRemove}
-      /> 
-    })}
+      />  })}
+    
 
 
     </div>
