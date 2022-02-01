@@ -34,11 +34,7 @@ function App() {
   const student_id = students.map((student) => {
     return student.id
   })
-  /*
-  const student_name = students.map((student) => {
-    return student.name
-  })
-*/
+
  useEffect(()=>{
     fetch("http://localhost:9292/houses")
     .then((r)=>r.json())
@@ -47,11 +43,7 @@ function App() {
  const house_name = houses.map((house) =>{
    return house.name
  })
- /*
- const house_id = houses.map((house)=> {
-   return house.id
- })
-*/
+
   useEffect(() => {
       fetch("http://localhost:9292/houses/1")
       .then((r)=> r.json())
