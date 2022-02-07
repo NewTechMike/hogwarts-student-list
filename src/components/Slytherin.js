@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
-import ListItem from "./ListItem";
 import ListHouse from "./ListHouse";
 
-function Slytherin({id, names, handleRemove}){
-  let [state, setState] = useState([]);
-  
+function Slytherin(){
+  let [students, setStudents] = useState([]);
 
   useEffect(()=>{
     fetch("http://localhost:9292/houses/4")
     .then((r)=> r.json())
-      .then((test)=>setState(test))
+      .then((sly_list)=>setStudents(sly_list))
   },[]);
-  console.log(state)
-  const displayNames = names.filter((name)=>{
-    return name.name
+  const displayStu = students.filter((student)=>{
+    return student.name
   })
-
-  console.log("(Sly) Students: ", names)
+  //console.log("(Sly) Students: ", students)
   return(
     <div>
       <header>
         Slytherin Students
 
       </header>
-      {displayNames.map((names) =>{
+      {displayStu.map((name) =>{
         return <ListHouse
-          key={names.id}
-          id={names.id}
-          house={names.name}
+          key={name.id}
+          id={name.id}
+          house={name.name}
       /> 
     })}
      

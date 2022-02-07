@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ListItem from "./ListItem";
 import NewStudent from './NewStudent';
 
-function Students({names, id, handleRemove, handleAddNew}){
-  
-  const displayNames = names.filter((name)=>{
-    return name.name
-  })
+function Students({names, handleRemove, handleAddNew}){
+  //console.log("(St) Students: ", names)
 
+  const displayNames = names.filter((student)=>{
+    return student.name
+  })
   return(
     <div>
       <header>
         Currently Enrolled Students
       </header>
       <NewStudent onAddNewStudent={handleAddNew}/>
-      {displayNames.map((names) =>{
+      {displayNames.map((name) =>{
         return <ListItem 
-          key={names.id}
-          id={names.id}
-          student_name={names.name}
+          key={name.id}
+          id={name.id}
+          student_name={name.name}
           onRemove={handleRemove}
       />  })}
     

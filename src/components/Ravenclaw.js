@@ -1,23 +1,28 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React, { useState, useEffect } from "react";
 import ListHouse from "./ListHouse";
 
-function Ravenclaw({id, names, handleRemove}){
-  const displayNames = names.filter((name)=>{
-    return name.name
-  })
-  console.log("(R) Students: ", names)
+function Ravenclaw(){
+  let [students, setStudents] = useState([]);
 
+  useEffect(()=>{
+    fetch("http://localhost:9292/houses/2")
+    .then((r)=> r.json())
+      .then((raven_list)=>setStudents(raven_list))
+  },[]);
+  const displayStu = students.filter((student)=>{
+    return student.name
+  })
+  //console.log("(Raven) Students: ", students)
   return(
     <div>
       <header>
       Ravenclaw Students
       </header>
-      {displayNames.map((names) =>{
+      {displayStu.map((name) =>{
         return <ListHouse
-        key={names.id}
-        id={names.id}
-        house={names.name}
+        key={name.id}
+        id={name.id}
+        house={name.name}
     /> 
     })}
     </div>

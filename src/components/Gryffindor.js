@@ -1,24 +1,29 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React, { useState, useEffect } from "react";
 import ListHouse from "./ListHouse";
 
-function Gryffindor({id, names, handleRemove}){
+function Gryffindor(){
+  let [students, setStudents] = useState([]);
 
-  const displayNames = names.filter((name)=>{
-    return name.name
+  useEffect(()=>{
+    fetch("http://localhost:9292/houses/1")
+    .then((r)=> r.json())
+      .then((gryff_list)=>setStudents(gryff_list))
+  },[]);
+  const displayStu = students.filter((student)=>{
+    return student.name
   })
-  console.log("(G) Students: ", names)
+  //console.log("(Sly) Students: ", students)
 
   return(
     <div>
       <header>
         Gryffindor Students
       </header>
-      {displayNames.map((names) =>{
+      {displayStu.map((name) =>{
         return <ListHouse
-        key={names.id}
-        id={names.id}
-        house={names.name}
+        key={name.id}
+        id={name.id}
+        house={name.name}
     />  
     })}
     </div>
